@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Conteudo dentro de um template</title>
+
+    <script type="module" src="hello-world.js"></script>
+</head>
+
+<body>
+    <h1>Encapsular Web COmponents em Módulos</h1>
+
+
+    <hello-world></hello-world> 
+
+    <hello-world>
+        <h2 slot="titulo">Titulo Definido</h2>
+        <h2 slot="titulo">Titulo 2</h2>
+        <div slot="conteudo"> Este é um contúdo do elemento</div>
+    </hello-world>
+
+</body>
+</html>

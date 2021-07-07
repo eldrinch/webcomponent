@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Conteudo dentro de um template</title>
+
+    <script>
+        class HelloWorldElemnt extends HTMLElement{
+            static observedAttributes = ["data-name"];
+
+            constructor(){
+                super();
+            
+                this.attachShadow({mode: "open"});
+                const tpl = document.getElementById("template-wc");
+                this.shadowRoot.append(tpl.content.cloneNode(true));
+            }
+        }
+
+        customElements.define("hello-world", HelloWorldElemnt)
+    </script>
+</head>
+
+<body>
+    <h1>Slots</h1>
+
+    <template id="template-wc">
+        <style>
+            :host{
+                display: block;
+                background-color: #666;
+                color: white;
+                padding: 1em;
+                margin: 1em;
+            }
+
+            h2{
+                color: pink;
+            }
+
+        </style>
+        <slot name="titulo">
+            <h2>Título padrão</h2>
+        </slot>
+
+        <p>Aqui vai o conteúdo do elemento</p>
+        <slot></slot>
+    </template>
+
+    <hello-world></hello-world> 
+
+    <hello-world>
+        <h2 slot="titulo">Titulo Definido</h2>
+        <h2 slot="titulo">Titulo 2</h2>
+        <div slot="conteudo"> Este é um contúdo do elemento</div>
+    </hello-world>
+
+</body>
+</html>

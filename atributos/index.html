@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components - Atributos</title>
+
+    <script>
+        class HelloWorldElemnt extends HTMLElement{
+            static observedAttributes = ["data-name"];
+
+            constructor(){
+                super();
+            
+                this.attachShadow({mode: "open"});
+                // const span = document.createElement("span");
+                this.spanEl = document.createElement("span")
+                // const name = this.getAttribute("data-name")
+                // span.textContent = `Hello ${name}!`;
+                // this.shadowRoot.append(span);
+                this.shadowRoot.append(this.spanEl);
+            }
+
+            connectedCallback(){
+                const name = this.getAttribute("data-name")
+                this.spanEl.textContent = `Hello ${name}!`;
+            }
+
+            attributeChangedCallback(attr, oldValue, newValue){
+                if (attr === "data-name"){
+                    this.spanEl.textContent = `Hello ${name}!`;
+
+                } 
+
+                console.log(`attr change ${attr} ${oldValue} ${newValue}`);
+
+            }
+        }
+
+        customElements.define("hello-world", HelloWorldElemnt)
+    </script>
+</head>
+
+<body>
+    <h1>Web Components - Atributos</h1>
+    <hello-world data-name="Eldrin"></hello-world>
+</body>
+</html>
