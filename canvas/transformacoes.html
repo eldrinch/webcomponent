@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Canvas</title>
+    <style>
+      canvas {
+        border: 2px dashed grey;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Canvas - Transformações</h2>
+    <canvas width="600" height="300" id="canvas1"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas1");
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "rgba(0, 0, 200, 0.8)";
+      ctx.save(); // salva a operacao
+      ctx.translate(200, 100); // transformação
+      ctx.fillRect(0, 0, 100, 100); // desnha um rectangulo (x,y,h,v)
+      ctx.restore(); // ele volta para o ultimo estado salvo na pilha
+
+      ctx.save();
+      ctx.translate(200, 100);
+      ctx.rotate(Math.PI / 8); // a rotacção é feita em redianos e não em graus
+      ctx.scale(4, 2);
+      ctx.fillRect(0, 0, 50, 50);
+      ctx.restore();
+    </script>
+  </body>
+</html>
+5.3. Canvas: renderizando imagens
