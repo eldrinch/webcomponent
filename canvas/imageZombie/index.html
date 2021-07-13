@@ -36,7 +36,7 @@
         let i = 0;
         setInterval(() => {
           const img = imgs[i % imgs.length];
-          ctx.clearRect(0, 0, 600, 300);
+          ctx.clearRect(0, 0, 600, 300); //chama para limpar um area rectangular
           ctx.drawImage(img, i * 5, 0, img.width / 2, img.height / 2);
           i++;
         }, 100);
