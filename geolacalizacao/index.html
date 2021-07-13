@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geolocalização</title>
+  </head>
+  <body>
+    <h1>Geolocalização</h1>
+    <div id="loc"></div>
+
+    <iframe width="600" height="450" style="border: 0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/view?zoom=3&center=-14.2350,-51.9253&key=AIzaSyAtLJl9fLpEBs5pcuP7wJTAaON_mFD7Lno"></iframe>
+
+    <script>
+      //   navigator.geolocation.getCurrentPosition(
+      const id = navigator.geolocation.watchPosition(
+        (position) => {
+          console.log("ok");
+          const { latitude, longitude } = position.coords;
+          document.getElementById("loc").textContent = `Você esta em latitude ${latitude} , longitude  ${longitude}`;
+
+          const src = `https://www.google.com/maps/embed/v1/view?zoom=14&center=${latitude},${longitude}&key=AIzaSyAtLJl9fLpEBs5pcuP7wJTAaON_mFD7Lno`;
+
+          document.getElementById("map").src = src;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      //   navigator.geolocation.clearWatch(id);
+    </script>
+  </body>
+</html>
