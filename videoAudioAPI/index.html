@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Captura de Video</title>
+    <style>
+      button {
+        font-size: 20px;
+      }
+      canvas,
+      video {
+        margin: 10px 0;
+        border: 2px solid grey;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Captura de Video</h1>
+    <button onclick="iniciar()">Iniciar</button>
+    <button onclick="parar()">Parar</button>
+    <button onclick="tirarFoto()">Tirar Foto</button><br />
+    <video width="320" height="240" id="video"></video>
+    <canvas width="320" height="240" id="canvas"></canvas>
+    <a id="dl" href="#" download>Download da Foto</a>
+
+    <script>
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const dlLink = document.getElementById("dl");
+      dlLink.style.display = "none";
+
+      function iniciar() {
+        navigator.mediaDevices
+          .getUserMedia({
+            audio: false,
+            video: true,
+          })
+          .then((stream) => {
+            //   console.log("ok");
+            //   console.log(stream);
+            video.srcObject = stream;
+            video.onloadedmetadata = () => {
+              video.play();
+            };
+          });
+      }
+
+      function parar() {
+        if (video.srcObject) {
+          video.srcObject.getTracks().forEach((track) => track.stop());
+          // video.pause();
+        }
+      }
+
+      function tirarFoto() {
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0, 320, 240);
+        const hrefImg = canvas.toDataURL("image/png");
+        dlLink.style.display = "inline";
+        dlLink.href = hrefImg;
+      }
+    </script>
+  </body>
+</html>
