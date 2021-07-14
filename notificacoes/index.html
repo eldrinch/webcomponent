@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notificações</title>
+  </head>
+  <body>
+    <h1>Notificações</h1>
+    <button id="disparar">Disparar Notificação</button>
+    <script>
+      const botaoDisparar = document.getElementById("disparar");
+
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+
+      botaoDisparar.onclick = () => {
+        // Notification.requestPermission().then((permission) => {
+        if (Notification.permission === "granted") {
+          const notificacao = new Notification("Olá", {
+            body: "Este é o conteúdo da notificação.",
+            icon: "vueicon.png",
+          });
+
+          notificacao.onclick = () => {
+            windows.focus();
+          };
+        } else {
+          alert("Notificação não permitida");
+        }
+      };
+    </script>
+  </body>
+</html>
