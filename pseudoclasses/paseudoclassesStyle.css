@@ -1,0 +1,113 @@
+button {
+  width: 50px;
+  height: 20px;
+  margin: 10px;
+}
+
+textarea {
+  width: 300px;
+  height: 100px;
+}
+
+div,
+p {
+  border: 2px solid grey;
+  margin: 5px;
+}
+/*Elemento F descendente de E*/
+.c1 div {
+  border-style: dashed;
+}
+
+/*Elemento F filho de E*/
+.c1 > div {
+  border-color: red;
+}
+
+/*Elemento F é irmão de E e precedido por E*/
+div ~ div {
+  border-style: dashed;
+}
+/*Elemento F irmão de E e imediatamente precedido por E*/
+div + div {
+  border-color: blue;
+}
+
+/*
+Pseudoclasses
+:disable  Elemento de interface que esteja desabilitado.
+:hover    Elemento cujo mouse esta sobre
+:focus    Elemento que possui foco do cursor do teclado
+:first-child Elemento que é o primeiro filho de seu pai
+:last-child Elemento que é o ultimo filho de seu pai.
+:empty Elemento que não possui filho
+:not(E) elemento não corresponde ao seletor E
+
+Seletores Compostos
+
+a.destaque.grande:disabled
+Elemento A, com as classes destaque e grande, que esta desabilitado
+
+Seletores Complexos
+
+table.comBordas tr + tr
+Elemento TR, imediatamente precedido por um irmão que é um elemento TR descendente de um elemento TABLE com classe comBordas
+
+Especificidade de seletores
+Critérios para definir a prioridade
+1. Declarações dentro do atributo style
+2. Quantidades de seletores po ID da regra.
+3. Quantidade de seletores por classe ou pseudoclasse da regra.
+4. Quantidade de seletores por elemento da regra.
+5. Ordem de declaração da regra (ultima é aplicada)
+
+*/
+ul.listaBonita {
+  color: #353535;
+}
+
+ul.listaBonita > li {
+  list-style: none;
+  border-width: 2px;
+  border-color: #a0a0a0;
+  padding: 4px 8px;
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+ul.listaBonita {
+  color: #353535;
+}
+ul.listaBonita > li:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-top-style: solid;
+}
+
+ul.listaBonita > li:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-style: solid;
+}
+
+ul.listaBonita > li:hover {
+  background-color: #ebebeb;
+}
+
+ul.listaBonita > li.selecionado {
+  background-color: #bfdbff;
+  border-color: #2e79db;
+  border-bottom-style: solid;
+}
+
+/*ul.listaBonita > li:not(.selecionado) + li.selecionado {
+  border-top-style: solid;
+}
+
+ul.listaBonita > li:not(.selecionado) + li:not(.selecionado) {
+  border-top-style: solid;
+}
+*/
+ul.listaBonita > li:not(.selecionado) + li {
+  border-top-style: solid;
+}
